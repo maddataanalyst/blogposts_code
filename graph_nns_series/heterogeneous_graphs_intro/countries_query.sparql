@@ -1,0 +1,95 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dbc: <http://dbpedia.org/resource/Category:>
+
+SELECT DISTINCT
+   (str(?country_name) AS ?country_name),
+   (bound(?nato_members) AS ?nato_member),
+   (bound(?eu_members) AS ?eu_member),
+   (bound(?three_seas_members) AS ?three_seas_member),
+   ?countryid,
+   (str(?legname) AS ?legname),
+   ?legislatureid,
+   (str(?govtypename) AS ?govtype),
+   ?govtypeid,
+   (str(?subjectLabel) AS ?political_subject),
+   ?subjectid,
+   ?houseid,
+   (COALESCE(str(?housename), "") AS ?housename)
+
+WHERE
+{
+   ?country dcterms:subject dbc:Member_states_of_the_United_Nations;
+                  dbo:wikiPageID ?countryid;
+                  dbo:legislature ?legislature;
+                 dbp:conventionalLongName ?country_name.
+
+
+    OPTIONAL{
+        ?country       dcterms:subject ?nato_members.
+
+        ?nato_members  rdfs:label "Member states of NATO"@en.
+    }.
+
+    OPTIONAL{
+        ?country       dcterms:subject ?eu_members.
+
+        ?eu_members  rdfs:label "Member states of the European Union"@en.
+    }.
+
+
+    OPTIONAL{
+        ?country       dcterms:subject ?three_seas_members.
+
+        ?three_seas_members  rdfs:label "Member states of the Three Seas Initiative"@en.
+    }.
+
+    OPTIONAL {
+        ?country    dbo:governmentType|dbp:governmentType ?gov.
+
+        ?gov        rdfs:label ?govtypename;
+                    dbo:wikiPageID ?govtypeid. 
+            
+        ?gov        dcterms:subject ?subject.
+
+        ?subject rdf:type skos:Concept;
+                 skos:broader dbc:Forms_of_government;
+                 rdfs:label ?subjectLabel;
+                 dbo:wikiPageID ?subjectid.
+            }.
+
+    OPTIONAL {
+            ?legislature    dbo:wikiPageID ?legislatureid;
+                            dbp:name ?legname. }.
+
+
+    OPTIONAL {
+            ?legislature dbp:house ?house.
+
+            ?house dbo:wikiPageID ?houseid;
+                   dbp:name ?housename.}.
+                     
+                 FILTER (
+                     LANG( ?country_name ) = 'en' 
+                     AND (LANG( ?govtypename) = 'en')
+                     AND (LANG( ?legname) = 'en')
+                    
+                     AND(!bound(?housename) || LANG(?housename) = 'en')
+                 )
+                     
+}
+ORDER BY DESC(?nato_member)
