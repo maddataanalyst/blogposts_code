@@ -65,7 +65,7 @@ def setup_azure_llm(*args, **kwargs) -> AzureOpenAI:
     Sets up an instance of AzureOpenAI for use with the Llama Language Model.
     
     Required environmental variables:
-    - GPT_40_DEPLOYMENT_NAME: the name of the GPT-3 deployment to use
+    - ENGINE_NAME: the name of the engine to use (GPT-4, GPT-35, etc.)
     - OPENAI_MODEL: the name of the OpenAI model to use
     - OPENAI_API_KEY: the API key for the OpenAI API
     - OPENAI_API_BASE: the base URL for the OpenAI API
@@ -73,7 +73,7 @@ def setup_azure_llm(*args, **kwargs) -> AzureOpenAI:
     """
 
     llm = AzureOpenAI(
-        engine=os.environ['GPT_40_DEPLOYMENT_NAME'],
+        engine=os.environ['ENGINE_NAME'],
         model=os.environ["OPENAI_MODEL"],
         api_key=os.environ["OPENAI_API_KEY"],
         api_base=os.environ["OPENAI_API_BASE"],
