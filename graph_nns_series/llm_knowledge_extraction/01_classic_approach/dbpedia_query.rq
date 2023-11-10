@@ -1,0 +1,28 @@
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+select DISTINCT
+    ?country,
+    (STR(?currency) AS ?currency),
+    ?leg,
+    ?govtype,
+    ?subject
+WHERE {
+   ?entity rdfs:label "Member states of the European Union"@en.
+   ?country dcterms:subject ?entity;
+                 dbo:governmentType ?govtype;
+                 dbp:currencyCode ?currency;
+                 dbo:legislature ?leg.
+    ?govtype dcterms:subject ?subject.
+     
+}

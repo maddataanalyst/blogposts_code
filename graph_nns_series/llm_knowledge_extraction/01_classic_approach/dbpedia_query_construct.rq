@@ -1,0 +1,23 @@
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+CONSTRUCT{
+ ?country  rdfs:label "Member states of the European Union".
+?country dbp:currencyCode ?currency.
+ ?country dbo:governmentType ?govtype.
+ ?country  dbo:legislature ?leg.
+  ?govtype dcterms:subject ?subject.
+}
+WHERE {
+   ?entity rdfs:label "Member states of the European Union"@en.
+   ?country dcterms:subject ?entity;
+                 dbo:governmentType ?govtype;
+                 dbp:currencyCode ?currency;
+                 dbo:legislature ?leg.
+    ?govtype dcterms:subject ?subject.
+     
+}

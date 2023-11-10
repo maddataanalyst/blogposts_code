@@ -1,0 +1,458 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1000px;
+                 height: 1000px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="US Presidents">US Presidents</option>
+                                
+                                    <option value="different approaches">different approaches</option>
+                                
+                                    <option value="Donald Trump">Donald Trump</option>
+                                
+                                    <option value="conservative stance">conservative stance</option>
+                                
+                                    <option value="divisive stance">divisive stance</option>
+                                
+                                    <option value="Joe Biden">Joe Biden</option>
+                                
+                                    <option value="importance of international cooperation">importance of international cooperation</option>
+                                
+                                    <option value="normalcy to White House">normalcy to White House</option>
+                                
+                                    <option value="more traditional policies">more traditional policies</option>
+                                
+                                    <option value="centrist policies">centrist policies</option>
+                                
+                                    <option value="Biden">Biden</option>
+                                
+                                    <option value="Trump">Trump</option>
+                                
+                                    <option value="America First approach">America First approach</option>
+                                
+                                    <option value="international agreements">international agreements</option>
+                                
+                                    <option value="interests of United States">interests of United States</option>
+                                
+                                    <option value="tumultuous relationship with world leaders">tumultuous relationship with world leaders</option>
+                                
+                                    <option value="conservative agenda">conservative agenda</option>
+                                
+                                    <option value="Affordable Care Act">Affordable Care Act</option>
+                                
+                                    <option value="environmental regulations">environmental regulations</option>
+                                
+                                    <option value="for businesses and wealthy">for businesses and wealthy</option>
+                                
+                                    <option value="hardline immigration policies">hardline immigration policies</option>
+                                
+                                    <option value="zero tolerance policy at border">zero tolerance policy at border</option>
+                                
+                                    <option value="travel ban targeting Muslim countries">travel ban targeting Muslim countries</option>
+                                
+                                    <option value="bold approach">bold approach</option>
+                                
+                                    <option value="combative approach">combative approach</option>
+                                
+                                    <option value="Twitter to attack opponents">Twitter to attack opponents</option>
+                                
+                                    <option value="accusations of corruption">accusations of corruption</option>
+                                
+                                    <option value="accusations of abuse of power">accusations of abuse of power</option>
+                                
+                                    <option value="impeachment trial">impeachment trial</option>
+                                
+                                    <option value="international cooperation">international cooperation</option>
+                                
+                                    <option value="relationships with allies">relationships with allies</option>
+                                
+                                    <option value="Paris Climate Agreement">Paris Climate Agreement</option>
+                                
+                                    <option value="World Health Organization">World Health Organization</option>
+                                
+                                    <option value="relationships with Mexico and Canada">relationships with Mexico and Canada</option>
+                                
+                                    <option value="diplomatic approach with Iran and North Korea">diplomatic approach with Iran and North Korea</option>
+                                
+                                    <option value="liberal agenda">liberal agenda</option>
+                                
+                                    <option value="racial justice">racial justice</option>
+                                
+                                    <option value="healthcare">healthcare</option>
+                                
+                                    <option value="climate change">climate change</option>
+                                
+                                    <option value="executive orders on voting rights">executive orders on voting rights</option>
+                                
+                                    <option value="executive orders on gun control">executive orders on gun control</option>
+                                
+                                    <option value="executive orders on climate change">executive orders on climate change</option>
+                                
+                                    <option value="legislation on healthcare">legislation on healthcare</option>
+                                
+                                    <option value="legislation on infrastructure">legislation on infrastructure</option>
+                                
+                                    <option value="legislation on immigration reform">legislation on immigration reform</option>
+                                
+                                    <option value="working with Congress">working with Congress</option>
+                                
+                                    <option value="building consensus">building consensus</option>
+                                
+                                    <option value="conciliatory approach">conciliatory approach</option>
+                                
+                                    <option value="bringing people together">bringing people together</option>
+                                
+                                    <option value="finding common ground">finding common ground</option>
+                                
+                                    <option value="professionalism to White House">professionalism to White House</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "US Presidents", "label": "US Presidents", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "different approaches", "label": "different approaches", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Donald Trump", "label": "Donald Trump", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "conservative stance", "label": "conservative stance", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "divisive stance", "label": "divisive stance", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Joe Biden", "label": "Joe Biden", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "importance of international cooperation", "label": "importance of international cooperation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "normalcy to White House", "label": "normalcy to White House", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "more traditional policies", "label": "more traditional policies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "centrist policies", "label": "centrist policies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Biden", "label": "Biden", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Trump", "label": "Trump", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "America First approach", "label": "America First approach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "international agreements", "label": "international agreements", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "interests of United States", "label": "interests of United States", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "tumultuous relationship with world leaders", "label": "tumultuous relationship with world leaders", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "conservative agenda", "label": "conservative agenda", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Affordable Care Act", "label": "Affordable Care Act", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "environmental regulations", "label": "environmental regulations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "for businesses and wealthy", "label": "for businesses and wealthy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "hardline immigration policies", "label": "hardline immigration policies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "zero tolerance policy at border", "label": "zero tolerance policy at border", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "travel ban targeting Muslim countries", "label": "travel ban targeting Muslim countries", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "bold approach", "label": "bold approach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "combative approach", "label": "combative approach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Twitter to attack opponents", "label": "Twitter to attack opponents", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "accusations of corruption", "label": "accusations of corruption", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "accusations of abuse of power", "label": "accusations of abuse of power", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "impeachment trial", "label": "impeachment trial", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "international cooperation", "label": "international cooperation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "relationships with allies", "label": "relationships with allies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Paris Climate Agreement", "label": "Paris Climate Agreement", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "World Health Organization", "label": "World Health Organization", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "relationships with Mexico and Canada", "label": "relationships with Mexico and Canada", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "diplomatic approach with Iran and North Korea", "label": "diplomatic approach with Iran and North Korea", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "liberal agenda", "label": "liberal agenda", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "racial justice", "label": "racial justice", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "healthcare", "label": "healthcare", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "climate change", "label": "climate change", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "executive orders on voting rights", "label": "executive orders on voting rights", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "executive orders on gun control", "label": "executive orders on gun control", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "executive orders on climate change", "label": "executive orders on climate change", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "legislation on healthcare", "label": "legislation on healthcare", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "legislation on infrastructure", "label": "legislation on infrastructure", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "legislation on immigration reform", "label": "legislation on immigration reform", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "working with Congress", "label": "working with Congress", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "building consensus", "label": "building consensus", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "conciliatory approach", "label": "conciliatory approach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "bringing people together", "label": "bringing people together", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "finding common ground", "label": "finding common ground", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "professionalism to White House", "label": "professionalism to White House", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "US Presidents", "label": "have had", "title": "have had", "to": "different approaches", "width": 1}, {"from": "Donald Trump", "label": "taking", "title": "taking", "to": "conservative stance", "width": 1}, {"from": "Donald Trump", "label": "taking", "title": "taking", "to": "divisive stance", "width": 1}, {"from": "Joe Biden", "label": "emphasizing", "title": "emphasizing", "to": "importance of international cooperation", "width": 1}, {"from": "Joe Biden", "label": "restoring", "title": "restoring", "to": "normalcy to White House", "width": 1}, {"from": "Joe Biden", "label": "has", "title": "has", "to": "more traditional policies", "width": 1}, {"from": "Joe Biden", "label": "has", "title": "has", "to": "centrist policies", "width": 1}, {"from": "normalcy to White House", "label": "restored", "title": "restored", "to": "Biden", "width": 1}, {"from": "Trump", "label": "known for", "title": "known for", "to": "America First approach", "width": 1}, {"from": "Trump", "label": "pulling back from", "title": "pulling back from", "to": "international agreements", "width": 1}, {"from": "Trump", "label": "prioritizing", "title": "prioritizing", "to": "interests of United States", "width": 1}, {"from": "Trump", "label": "had", "title": "had", "to": "tumultuous relationship with world leaders", "width": 1}, {"from": "Trump", "label": "pursued", "title": "pursued", "to": "conservative agenda", "width": 1}, {"from": "Trump", "label": "attempted to repeal", "title": "attempted to repeal", "to": "Affordable Care Act", "width": 1}, {"from": "Trump", "label": "rolled back", "title": "rolled back", "to": "environmental regulations", "width": 1}, {"from": "Trump", "label": "cut taxes", "title": "cut taxes", "to": "for businesses and wealthy", "width": 1}, {"from": "Trump", "label": "implemented", "title": "implemented", "to": "hardline immigration policies", "width": 1}, {"from": "Trump", "label": "implemented", "title": "implemented", "to": "zero tolerance policy at border", "width": 1}, {"from": "Trump", "label": "implemented", "title": "implemented", "to": "travel ban targeting Muslim countries", "width": 1}, {"from": "Trump", "label": "known for", "title": "known for", "to": "bold approach", "width": 1}, {"from": "Trump", "label": "known for", "title": "known for", "to": "combative approach", "width": 1}, {"from": "Trump", "label": "used", "title": "used", "to": "Twitter to attack opponents", "width": 1}, {"from": "Trump", "label": "faced", "title": "faced", "to": "accusations of corruption", "width": 1}, {"from": "Trump", "label": "faced", "title": "faced", "to": "accusations of abuse of power", "width": 1}, {"from": "Trump", "label": "faced", "title": "faced", "to": "impeachment trial", "width": 1}, {"from": "Biden", "label": "emphasized", "title": "emphasized", "to": "international cooperation", "width": 1}, {"from": "Biden", "label": "rebuilding", "title": "rebuilding", "to": "relationships with allies", "width": 1}, {"from": "Biden", "label": "rejoined", "title": "rejoined", "to": "Paris Climate Agreement", "width": 1}, {"from": "Biden", "label": "rejoined", "title": "rejoined", "to": "World Health Organization", "width": 1}, {"from": "Biden", "label": "repairing", "title": "repairing", "to": "relationships with Mexico and Canada", "width": 1}, {"from": "Biden", "label": "taking", "title": "taking", "to": "diplomatic approach with Iran and North Korea", "width": 1}, {"from": "Biden", "label": "pursued", "title": "pursued", "to": "liberal agenda", "width": 1}, {"from": "Biden", "label": "focusing on", "title": "focusing on", "to": "racial justice", "width": 1}, {"from": "Biden", "label": "focusing on", "title": "focusing on", "to": "healthcare", "width": 1}, {"from": "Biden", "label": "focusing on", "title": "focusing on", "to": "climate change", "width": 1}, {"from": "Biden", "label": "signed", "title": "signed", "to": "executive orders on voting rights", "width": 1}, {"from": "Biden", "label": "signed", "title": "signed", "to": "executive orders on gun control", "width": 1}, {"from": "Biden", "label": "signed", "title": "signed", "to": "executive orders on climate change", "width": 1}, {"from": "Biden", "label": "proposed", "title": "proposed", "to": "legislation on healthcare", "width": 1}, {"from": "Biden", "label": "proposed", "title": "proposed", "to": "legislation on infrastructure", "width": 1}, {"from": "Biden", "label": "proposed", "title": "proposed", "to": "legislation on immigration reform", "width": 1}, {"from": "Biden", "label": "emphasized", "title": "emphasized", "to": "working with Congress", "width": 1}, {"from": "Biden", "label": "emphasized", "title": "emphasized", "to": "building consensus", "width": 1}, {"from": "Biden", "label": "taken", "title": "taken", "to": "conciliatory approach", "width": 1}, {"from": "Biden", "label": "emphasized", "title": "emphasized", "to": "bringing people together", "width": 1}, {"from": "Biden", "label": "emphasized", "title": "emphasized", "to": "finding common ground", "width": 1}, {"from": "Biden", "label": "restored", "title": "restored", "to": "professionalism to White House", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
