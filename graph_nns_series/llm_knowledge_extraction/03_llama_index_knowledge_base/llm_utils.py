@@ -9,13 +9,13 @@ from llama_index import (
     SimpleDirectoryReader,
     KnowledgeGraphIndex
 )
-
+from typing import Tuple
 from huggingface_hub import login
 
 
 LLAMA2_7B_CHAT = "meta-llama/Llama-2-7b-chat-hf"
 LLAMA2_13B = "meta-llama/Llama-2-13b-hf"
-EMBEDDING_MODEL = 'local:BAAI/bge-small-en'
+EMBEDDING_MODEL = "local:BAAI/bge-small-en"
 
 def setup_local_llama(
         model_name: str = LLAMA2_7B_CHAT,
@@ -24,8 +24,8 @@ def setup_local_llama(
         context_window: int = 4096,
         max_new_tokens: int = 2048,
         device_map: str = "cuda:0",
-        model_kwargs: dict = {"torch_dtype": torch.float16, "load_in_8bit": True},
-        **kwargs) -> HuggingFaceLLM:
+        model_kwargs: dict = {"torch_dtype": torch.float16, "load_in_4bit": True},
+        **kwargs) -> Tuple[HuggingFaceLLM, object]:
     """
     Set up a local instance of the HuggingFaceLLM class for generating text using the Llama language model.
     All proper agruments should be passed to function.
@@ -51,13 +51,9 @@ def setup_local_llama(
         device_map=device_map,
         # change these settings below depending on your GPU
         model_kwargs=model_kwargs,
-        **kwargs['llm_kwargs'])
+        **kwargs.get('llm_kwargs', {}))
     
-    embedding_model = HuggingFaceEmbedding(
-        model_name=embedding_model,
-        **kwargs['embedding_kwargs']
-    )
-    return llm, embedding_model
+    return llm, EMBEDDING_MODEL
 
 
 def setup_azure_llm(*args, **kwargs) -> AzureOpenAI:
@@ -101,7 +97,7 @@ def setup_azure_embedding_model(*args, **kwargs) -> OpenAIEmbedding:
     return embed
 
 
-def setup_azure_openai(*args, **kwargs) -> AzureOpenAI:
+def setup_azure_openai(*args, **kwargs) -> Tuple[AzureOpenAI, object]:
     azure_llm = setup_azure_llm(*args, **kwargs)
     azure_embedding = setup_azure_embedding_model(*args, **kwargs)
     return azure_llm, azure_embedding
