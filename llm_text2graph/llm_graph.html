@@ -1,0 +1,489 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1500px;
+                 height: 1500px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="Organization_0">Organization_0</option>
+                                
+                                    <option value="Concept_9">Concept_9</option>
+                                
+                                    <option value="Concept_3">Concept_3</option>
+                                
+                                    <option value="Concept_0">Concept_0</option>
+                                
+                                    <option value="Concept_20">Concept_20</option>
+                                
+                                    <option value="Concept_21">Concept_21</option>
+                                
+                                    <option value="Concept_22">Concept_22</option>
+                                
+                                    <option value="Concept_23">Concept_23</option>
+                                
+                                    <option value="Concept_24">Concept_24</option>
+                                
+                                    <option value="Concept_25">Concept_25</option>
+                                
+                                    <option value="Concept_26">Concept_26</option>
+                                
+                                    <option value="Concept_28">Concept_28</option>
+                                
+                                    <option value="Concept_29">Concept_29</option>
+                                
+                                    <option value="Person_1">Person_1</option>
+                                
+                                    <option value="Person_2">Person_2</option>
+                                
+                                    <option value="Person_3">Person_3</option>
+                                
+                                    <option value="Person_6">Person_6</option>
+                                
+                                    <option value="Person_7">Person_7</option>
+                                
+                                    <option value="Person_8">Person_8</option>
+                                
+                                    <option value="Person_5">Person_5</option>
+                                
+                                    <option value="Concept_30">Concept_30</option>
+                                
+                                    <option value="Concept_4">Concept_4</option>
+                                
+                                    <option value="Concept_5">Concept_5</option>
+                                
+                                    <option value="Concept_31">Concept_31</option>
+                                
+                                    <option value="Concept_33">Concept_33</option>
+                                
+                                    <option value="Concept_34">Concept_34</option>
+                                
+                                    <option value="Concept_35">Concept_35</option>
+                                
+                                    <option value="Person_4">Person_4</option>
+                                
+                                    <option value="Concept_7">Concept_7</option>
+                                
+                                    <option value="Concept_1">Concept_1</option>
+                                
+                                    <option value="Concept_2">Concept_2</option>
+                                
+                                    <option value="Concept_8">Concept_8</option>
+                                
+                                    <option value="Concept_10">Concept_10</option>
+                                
+                                    <option value="Concept_11">Concept_11</option>
+                                
+                                    <option value="Concept_12">Concept_12</option>
+                                
+                                    <option value="Concept_13">Concept_13</option>
+                                
+                                    <option value="Concept_14">Concept_14</option>
+                                
+                                    <option value="Concept_15">Concept_15</option>
+                                
+                                    <option value="Concept_16">Concept_16</option>
+                                
+                                    <option value="Concept_17">Concept_17</option>
+                                
+                                    <option value="Concept_18">Concept_18</option>
+                                
+                                    <option value="Concept_19">Concept_19</option>
+                                
+                                    <option value="Concept_27">Concept_27</option>
+                                
+                                    <option value="Concept_32">Concept_32</option>
+                                
+                                    <option value="Concept_39">Concept_39</option>
+                                
+                                    <option value="Concept_6">Concept_6</option>
+                                
+                                    <option value="Person_9">Person_9</option>
+                                
+                                    <option value="Concept_36">Concept_36</option>
+                                
+                                    <option value="Concept_37">Concept_37</option>
+                                
+                                    <option value="Concept_38">Concept_38</option>
+                                
+                                    <option value="Person_0">Person_0</option>
+                                
+                                    <option value="Organization_2">Organization_2</option>
+                                
+                                    <option value="Organization_1">Organization_1</option>
+                                
+                                    <option value="Organization_3">Organization_3</option>
+                                
+                                    <option value="Organization_4">Organization_4</option>
+                                
+                                    <option value="Organization_5">Organization_5</option>
+                                
+                                    <option value="Organization_6">Organization_6</option>
+                                
+                                    <option value="Organization_7">Organization_7</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "green", "id": "Organization_0", "label": "Raytheon Company", "shape": "dot"}, {"color": "red", "id": "Concept_9", "label": "Reinforcement learning", "shape": "dot"}, {"color": "red", "id": "Concept_3", "label": "Neural networks", "shape": "dot"}, {"color": "red", "id": "Concept_0", "label": "Machine learning", "shape": "dot"}, {"color": "red", "id": "Concept_20", "label": "Bayesian networks", "shape": "dot"}, {"color": "red", "id": "Concept_21", "label": "Gaussian processes", "shape": "dot"}, {"color": "red", "id": "Concept_22", "label": "Genetic algorithms", "shape": "dot"}, {"color": "red", "id": "Concept_23", "label": "Belief functions", "shape": "dot"}, {"color": "red", "id": "Concept_24", "label": "Rule-based machine learning", "shape": "dot"}, {"color": "red", "id": "Concept_25", "label": "Artificial neural networks", "shape": "dot"}, {"color": "red", "id": "Concept_26", "label": "Decision trees", "shape": "dot"}, {"color": "red", "id": "Concept_28", "label": "Support-vector machines", "shape": "dot"}, {"color": "red", "id": "Concept_29", "label": "Regression analysis", "shape": "dot"}, {"color": "blue", "id": "Person_1", "label": "Donald Hebb", "shape": "dot"}, {"color": "blue", "id": "Person_2", "label": "Walter Pitts", "shape": "dot"}, {"color": "blue", "id": "Person_3", "label": "Warren McCulloch", "shape": "dot"}, {"color": "blue", "id": "Person_6", "label": "John Hopfield", "shape": "dot"}, {"color": "blue", "id": "Person_7", "label": "David Rumelhart", "shape": "dot"}, {"color": "blue", "id": "Person_8", "label": "Geoffrey Hinton", "shape": "dot"}, {"color": "blue", "id": "Person_5", "label": "Alan Turing", "shape": "dot"}, {"color": "red", "id": "Concept_30", "label": "Machine learning model", "shape": "dot"}, {"color": "red", "id": "Concept_4", "label": "Statistics", "shape": "dot"}, {"color": "red", "id": "Concept_5", "label": "Mathematical optimisation", "shape": "dot"}, {"color": "red", "id": "Concept_31", "label": "Federated learning", "shape": "dot"}, {"color": "red", "id": "Concept_33", "label": "Overfitting", "shape": "dot"}, {"color": "red", "id": "Concept_34", "label": "Algorithmic bias", "shape": "dot"}, {"color": "red", "id": "Concept_35", "label": "Adversarial machine learning", "shape": "dot"}, {"color": "blue", "id": "Person_4", "label": "Tom M. Mitchell", "shape": "dot"}, {"color": "red", "id": "Concept_7", "label": "Predictive analytics", "shape": "dot"}, {"color": "red", "id": "Concept_1", "label": "Artificial intelligence", "shape": "dot"}, {"color": "red", "id": "Concept_2", "label": "Deep learning", "shape": "dot"}, {"color": "red", "id": "Concept_8", "label": "Inductive logic programming", "shape": "dot"}, {"color": "red", "id": "Concept_10", "label": "Supervised learning", "shape": "dot"}, {"color": "red", "id": "Concept_11", "label": "Unsupervised learning", "shape": "dot"}, {"color": "red", "id": "Concept_12", "label": "Semi-supervised learning", "shape": "dot"}, {"color": "red", "id": "Concept_13", "label": "Self-learning", "shape": "dot"}, {"color": "red", "id": "Concept_14", "label": "Feature learning", "shape": "dot"}, {"color": "red", "id": "Concept_15", "label": "Sparse dictionary learning", "shape": "dot"}, {"color": "red", "id": "Concept_16", "label": "Anomaly detection", "shape": "dot"}, {"color": "red", "id": "Concept_17", "label": "Robot learning", "shape": "dot"}, {"color": "red", "id": "Concept_18", "label": "Association rule learning", "shape": "dot"}, {"color": "red", "id": "Concept_19", "label": "Learning classifier systems", "shape": "dot"}, {"color": "red", "id": "Concept_27", "label": "Random forest regression", "shape": "dot"}, {"color": "red", "id": "Concept_32", "label": "Explainable AI", "shape": "dot"}, {"color": "red", "id": "Concept_39", "label": "Ethics", "shape": "dot"}, {"color": "red", "id": "Concept_6", "label": "Data mining", "shape": "dot"}, {"color": "blue", "id": "Person_9", "label": "Vinod Khosla", "shape": "dot"}, {"color": "red", "id": "Concept_36", "label": "Holdout method", "shape": "dot"}, {"color": "red", "id": "Concept_37", "label": "K-fold cross-validation", "shape": "dot"}, {"color": "red", "id": "Concept_38", "label": "Receiver operating characteristic", "shape": "dot"}, {"color": "blue", "id": "Person_0", "label": "Arthur Samuel", "shape": "dot"}, {"color": "green", "id": "Organization_2", "label": "AT\u0026T Labs-Research", "shape": "dot"}, {"color": "green", "id": "Organization_1", "label": "Netflix", "shape": "dot"}, {"color": "green", "id": "Organization_3", "label": "Big Chaos", "shape": "dot"}, {"color": "green", "id": "Organization_4", "label": "Pragmatic Theory", "shape": "dot"}, {"color": "green", "id": "Organization_5", "label": "Rebellion Research", "shape": "dot"}, {"color": "green", "id": "Organization_6", "label": "IBM Watson", "shape": "dot"}, {"color": "green", "id": "Organization_7", "label": "Microsoft Bing Chat", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"color": "black", "from": "Organization_0", "label": "developed_early_machine", "to": "Concept_9", "width": 1}, {"color": "black", "from": "Concept_3", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_20", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_21", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_22", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_23", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_24", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_25", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_26", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_28", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_29", "label": "is_model_used_in", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Person_1", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_2", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_3", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_6", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_7", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_8", "label": "contributed_to", "to": "Concept_3", "width": 1}, {"color": "black", "from": "Person_5", "label": "influenced_definition_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_30", "label": "is_component_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_4", "label": "is_foundation_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_5", "label": "is_foundation_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_31", "label": "is_training_method_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_33", "label": "is_limitation_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_34", "label": "is_limitation_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_35", "label": "is_limitation_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Person_4", "label": "provided_definition_for", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_7", "label": "is_application_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_0", "label": "is_subfield_of", "to": "Concept_1", "width": 1}, {"color": "black", "from": "Concept_2", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_8", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_9", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_10", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_11", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_12", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_13", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_14", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_15", "label": "is_subfield_of", "to": "Concept_14", "width": 1}, {"color": "black", "from": "Concept_16", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_17", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_18", "label": "is_subfield_of", "to": "Concept_24", "width": 1}, {"color": "black", "from": "Concept_19", "label": "is_subfield_of", "to": "Concept_24", "width": 1}, {"color": "black", "from": "Concept_27", "label": "is_subfield_of", "to": "Concept_26", "width": 1}, {"color": "black", "from": "Concept_32", "label": "is_subfield_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_39", "label": "is_concern_of", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_6", "label": "is_related_to", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Person_9", "label": "predicted_impact_on_jobs", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_36", "label": "is_model_assessment_method", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_37", "label": "is_model_assessment_method", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Concept_38", "label": "is_model_assessment_method", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Person_0", "label": "coined_term_for", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Organization_2", "label": "collaborated_with", "to": "Organization_1", "width": 1}, {"color": "black", "from": "Organization_3", "label": "collaborated_with", "to": "Organization_1", "width": 1}, {"color": "black", "from": "Organization_4", "label": "collaborated_with", "to": "Organization_1", "width": 1}, {"color": "black", "from": "Organization_1", "label": "used_for_application", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Organization_5", "label": "used_for_application", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Organization_6", "label": "used_for_application", "to": "Concept_0", "width": 1}, {"color": "black", "from": "Organization_7", "label": "used_for_application", "to": "Concept_0", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "layout",
+            "physics",
+            "selection"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
